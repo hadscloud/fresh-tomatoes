@@ -6,6 +6,7 @@ A webpage for searching movie information
 2. The home page has options to search movies based on keywords,genres and a combination of both.
 3. All the movies display a movie poster, name, rating(average rating from all users in your database), the loged in users rating, movie deatils.
 4. When users click on movie details, an overview of the movie is dispalyed and users can rate the movies only if the user is logged in. It also has the feature of displaying the ratings, if the user has already rated the movie from our database.
+### Possible Future Features
 5. If a user does not have an account,he/she can signup and create a new account.
 6. In the sign up page, users will have to fill all input field, password and confirm-password should be same. Passwords are savd as a hash not as text in the database.When user logs in,the password user inputs will be matched with the hashed password.
 7. We have created 2 tables in the database. One for storing the users details and second for storing the movie ratings.
@@ -17,7 +18,7 @@ I WANT to find information on my favorite movies
 SO THAT I can have deeper insight on what they are about
 
 ## Frameworks implemented
-- Tailwindcss
+- Bulma
 - jQuery
 
 ## Server Side APIs
