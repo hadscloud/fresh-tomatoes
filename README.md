@@ -38,7 +38,7 @@ SO THAT I can have deeper insight on what they are about
 
 
 ## Collaborators
--[Connor McGrath](https://github.com/CJMerit)
--[Hadleigh McLeod](https://github.com/hadscloud)
--[John Pinto](https://github.com/jpinto2)
--[Iqbal Ahmadi](https://github.com/IqbalAhmadi)
+- [Connor McGrath](https://github.com/CJMerit)
+- [Hadleigh McLeod](https://github.com/hadscloud)
+- [John Pinto](https://github.com/jpinto2)
+- [Iqbal Ahmadi](https://github.com/IqbalAhmadi)
