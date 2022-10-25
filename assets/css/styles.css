@@ -6,8 +6,11 @@
     box-sizing: border-box;
 }
 
+ /* ! Needs approval */
 body {
     font-family: 'Poppins', sans-serif;
+    height: 100vh;
+    background: linear-gradient(#000000 50%, #ffb92a 50%)
 }
 
 
