@@ -1,4 +1,7 @@
+// Initial reference 
 const panels = document.querySelectorAll('.panel');
+
+// API Key 
 var OMDBDataUrl = 'http://www.omdbapi.com/?apikey=767dc988&';
 var OMDBImageUrl = 'http://img.omdbapi.com/?apikey=767dc988&';
  
@@ -46,3 +49,23 @@ function initialPageLoad () {
 }
 
 initialPageLoad();
+
+
+// ? Wikipedia Api 
+// ! Needs to be checked 👇 
+
+if (search) {
+    var api = " URL here  "; 
+
+    fetch(api)
+    .then(response => response.json())
+    .then(response => {
+        response = response.query.pages;
+        var pageid = Object.keys(response)[0];
+        var extract = response[pageid].extract;
+
+        title_elem.innerHTML = search;
+        description_elem.innerHTML = extract;
+        
+    })
+}
