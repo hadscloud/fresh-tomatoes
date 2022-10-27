@@ -55,7 +55,8 @@ initialPageLoad();
 // ! Needs to be checked 👇 
 
 if (search) {
-    var api = " URL here  "; 
+    var api = "https://en.wikipedia.org/w/api.php?action=help&modules=opensearch"; 
+    console.log(api)
 
     fetch(api)
     .then(response => response.json())
