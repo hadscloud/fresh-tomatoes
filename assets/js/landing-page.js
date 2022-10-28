@@ -1,4 +1,4 @@
-// Initial reference 
+// Global variables
 const panels = document.querySelectorAll('.panel');
 var panelOne = document.getElementById('panel-one');
 var panelTwo = document.getElementById('panel-two');
@@ -6,12 +6,18 @@ var panelThree = document.getElementById('panel-three');
 var titleOne = document.createElement('h3');
 var titleTwo = document.createElement('h3');
 var titleThree = document.createElement('h3');
+<<<<<<< HEAD
+var panelClick = document.getElementById('panels');
+var movieSummary = document.getElementById('summary');
+=======
 var searchBtnEl = document.querySelector('#search-btn');
+>>>>>>> 8ee90b94f6270dbfc3a7e66bef5c6fd74d2b3199
 
-// API Key 
-var OMDBDataUrl = 'http://www.omdbapi.com/?apikey=767dc988&';
-var OMDBImageUrl = 'http://img.omdbapi.com/?apikey=767dc988&';
+// API Keys
+var OMDBDataUrl = 'https://www.omdbapi.com/?apikey=767dc988&';
+var OMDBImageUrl = 'https://img.omdbapi.com/?apikey=767dc988&';
 
+//Global arrays
 var launchPageNumber = [0,1,2,3,4,5]
 var launchPageTitles = [
     "V+for+Vendetta",
@@ -22,6 +28,7 @@ var launchPageTitles = [
     "The+Avengers",
 ];
 
+//Landing page posters
 var launchPagePosters = {
     VforVendetta: 'https://images3.alphacoders.com/266/266715.jpg',
     TheAvengers: 'https://images5.alphacoders.com/481/481123.jpg',
@@ -76,9 +83,9 @@ function landingPageParams(numArray) {
     }
     selection.splice(3,3)
     urls = [
-        OMDBDataUrl + 's=' + launchPageTitles[selection[0]],
-        OMDBDataUrl + 's=' + launchPageTitles[selection[1]],
-        OMDBDataUrl + 's=' + launchPageTitles[selection[2]],
+        OMDBDataUrl + 't=' + launchPageTitles[selection[0]],
+        OMDBDataUrl + 't=' + launchPageTitles[selection[1]],
+        OMDBDataUrl + 't=' + launchPageTitles[selection[2]],
     ]
     landingPageFetch(urls)
 
@@ -94,8 +101,8 @@ function landingPageFetch (urlArray) {
             return response.json();
         })
         .then(function (data) {
-            titleOne.textContent = data.Search[0].Title;
-            var posterSelect = data.Search[0].Title.split('');
+            titleOne.textContent = data.Title;
+            var posterSelect = data.Title.split('');
             for (var i = 0; i < posterSelect.length; i++) {
                 if(posterSelect[i] === " " || posterSelect[i] === ":" || posterSelect[i] === "'" || posterSelect[i] === "-") {
                     posterSelect.splice(i,1,"");
@@ -115,8 +122,8 @@ function landingPageFetch (urlArray) {
             return response.json();
         })
         .then(function (data) {
-            titleTwo.textContent = data.Search[0].Title;
-            var posterSelect = data.Search[0].Title.split('');
+            titleTwo.textContent = data.Title;
+            var posterSelect = data.Title.split('');
             for (var i = 0; i < posterSelect.length; i++) {
                 if(posterSelect[i] === " " || posterSelect[i] === ":" || posterSelect[i] === "'" || posterSelect[i] === "-") {
                     posterSelect.splice(i,1,"");
@@ -136,8 +143,8 @@ function landingPageFetch (urlArray) {
             return response.json();
         })
         .then(function (data) {
-            titleThree.textContent = data.Search[0].Title;
-            var posterSelect = data.Search[0].Title.split('');
+            titleThree.textContent = data.Title;
+            var posterSelect = data.Title.split('');
             for (var i = 0; i < posterSelect.length; i++) {
                 if(posterSelect[i] === " " || posterSelect[i] === ":" || posterSelect[i] === "'" || posterSelect[i] === "-") {
                     posterSelect.splice(i,1,"");
@@ -150,13 +157,62 @@ function landingPageFetch (urlArray) {
         })
 }
 
+function loadSummary(title) {
+    titleURL = title.replace(/ /g,'+');
+    searchURL = OMDBDataUrl + 't=' + titleURL + '&plot=short';
+
+    fetch(searchURL)
+        .then(function (response) {
+            if (!response.ok) {
+                throw response.json();
+            }
+        
+            return response.json();
+        })
+        .then(function (data) {
+            var summaryCard = document.createElement('div');
+            var summaryCardTitle = document.createElement('div');
+            var summaryCardContent = document.createElement('div');
+            summaryCard.setAttribute("class", "card auto");
+            summaryCardTitle.setAttribute("class", "card-header-title");
+            summaryCardContent.setAttribute("class", "card-content");
+            summaryCard.setAttribute("style","background: #ffb92a");
+            summaryCardTitle.textContent = title;
+            summaryCardContent.textContent = data.Plot;
+            summaryCard.appendChild(summaryCardTitle);
+            summaryCard.appendChild(summaryCardContent);
+            movieSummary.appendChild(summaryCard);
+        })
+}
+
+function eventHandler(event) {
+    if(event.target.parentElement.id !== 'panels') {
+        return;
+    }
+    movieSummary.innerHTML = '';
+    loadSummary(event.target.innerText)
+}
+
 landingPageParams(launchPageNumber);
+panelClick.addEventListener("click", eventHandler);
+
 
 // ? Wikipedia Api 
 // ! Needs to be checked 👇 
 
+<<<<<<< HEAD
+
+// if (search) {
+//     var api = "https://en.wikipedia.org/w/api.php?action=help&modules=opensearch"; 
+//     console.log(api)
+
+// if (search) {
+//     var api = "https://en.wikipedia.org/w/api.php?action=help&modules=opensearch"; 
+//     console.log(api)
+=======
 // if (search) {
 //     var api = " URL here  "; 
+>>>>>>> 8ee90b94f6270dbfc3a7e66bef5c6fd74d2b3199
 
 //     fetch(api)
 //     .then(response => response.json())
