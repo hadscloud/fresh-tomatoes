@@ -6,12 +6,9 @@ var panelThree = document.getElementById('panel-three');
 var titleOne = document.createElement('h3');
 var titleTwo = document.createElement('h3');
 var titleThree = document.createElement('h3');
-<<<<<<< HEAD
 var panelClick = document.getElementById('panels');
 var movieSummary = document.getElementById('summary');
-=======
 var searchBtnEl = document.querySelector('#search-btn');
->>>>>>> 8ee90b94f6270dbfc3a7e66bef5c6fd74d2b3199
 
 // API Keys
 var OMDBDataUrl = 'https://www.omdbapi.com/?apikey=767dc988&';
@@ -200,7 +197,6 @@ panelClick.addEventListener("click", eventHandler);
 // ? Wikipedia Api 
 // ! Needs to be checked 👇 
 
-<<<<<<< HEAD
 
 // if (search) {
 //     var api = "https://en.wikipedia.org/w/api.php?action=help&modules=opensearch"; 
@@ -209,10 +205,8 @@ panelClick.addEventListener("click", eventHandler);
 // if (search) {
 //     var api = "https://en.wikipedia.org/w/api.php?action=help&modules=opensearch"; 
 //     console.log(api)
-=======
 // if (search) {
 //     var api = " URL here  "; 
->>>>>>> 8ee90b94f6270dbfc3a7e66bef5c6fd74d2b3199
 
 //     fetch(api)
 //     .then(response => response.json())
