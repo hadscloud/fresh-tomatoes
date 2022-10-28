@@ -6,6 +6,7 @@ var panelThree = document.getElementById('panel-three');
 var titleOne = document.createElement('h3');
 var titleTwo = document.createElement('h3');
 var titleThree = document.createElement('h3');
+var searchBtnEl = document.querySelector('#search-btn');
 
 // API Key 
 var OMDBDataUrl = 'http://www.omdbapi.com/?apikey=767dc988&';
@@ -29,6 +30,25 @@ var launchPagePosters = {
     DieHard: 'https://wallpapercave.com/wp/wp1933244.jpg',
     SpiritedAway: 'https://d1e4pidl3fu268.cloudfront.net/875e245f-ebfa-4815-8c76-8f3e8f265bc2/826663181579_animespiritedawaydvdprimary.crop_1063x797_0,344.preview.jpg',
 }
+
+function handleSearchButton(event) {
+  event.preventDefault();
+
+  var searchInputVal = document.querySelector('#search-input').value;
+  
+
+  if (!searchInputVal) {
+    console.error('You need a search input value!');
+    return;
+  }
+
+  var queryString = './search-results.html?q=' + searchInputVal;
+
+  location.assign(queryString);
+}
+
+searchBtnEl.addEventListener('click', handleSearchButton);
+
 
 function removeActiveClasses() {
     panels.forEach(panel => {
@@ -135,14 +155,8 @@ landingPageParams(launchPageNumber);
 // ? Wikipedia Api 
 // ! Needs to be checked 👇 
 
-<<<<<<< HEAD
-if (search) {
-    var api = "https://en.wikipedia.org/w/api.php?action=help&modules=opensearch"; 
-    console.log(api)
-=======
 // if (search) {
 //     var api = " URL here  "; 
->>>>>>> 8eb36e98a40e9581c8cd6070421072f1e2f87830
 
 //     fetch(api)
 //     .then(response => response.json())
