@@ -2,3 +2,6 @@
     text-align: left !important;
     
 } */
+html {
+    background: linear-gradient(#ffb92a, #FFA987, #F7EBE8, #444140);
+}
