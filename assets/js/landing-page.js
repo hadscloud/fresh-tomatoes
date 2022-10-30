@@ -39,20 +39,27 @@ function handleSearchButton(event) {
   event.preventDefault();
 
   var searchInputVal = document.querySelector('#search-input').value;
-  
-
   if (!searchInputVal) {
     console.error('You need a search input value!');
     return;
   }
 
-  var queryString = './search-results.html?q=' + searchInputVal;
+  var resultsQuery = OMDBDataUrl + 's=' + searchInputVal;
+  fetch(resultsQuery)
+    .then(function (response) {
+        if (!response.ok) {
+            throw response.json();
+        }
 
-  location.assign(queryString);
+        return response.json();
+    })
+    .then(function (queryResults) {
+        var pages = Math.ceil(queryResults.totalResults/10);
+        var queryString = './search-listing.html?q=' + searchInputVal + '&totalpages=' + pages;
+        location.assign(queryString);
+    })
+
 }
-
-searchBtnEl.addEventListener('click', handleSearchButton);
-
 
 function removeActiveClasses() {
     panels.forEach(panel => {
@@ -187,12 +194,13 @@ function eventHandler(event) {
     movieSummary.innerHTML = '';
     loadSummary(event.target.innerText)
 }
-
+    
 landingPageParams(launchPageNumber);
 panelClick.addEventListener("click", eventHandler);
-
-
-// ? Wikipedia Api 
+searchBtnEl.addEventListener('click', handleSearchButton);
+    
+    
+    // ? Wikipedia Api 
 // ! Needs to be checked 👇 
 
 
