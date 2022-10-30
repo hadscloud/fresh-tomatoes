@@ -1,3 +1,4 @@
+var searchBtnEl = document.querySelector('#search-btn');
 var resultTextEl = document.getElementById('result-text');
 var resultContentEl = document.getElementById('result-content');
 var pageNumber = document.getElementById('page-number');
@@ -7,6 +8,31 @@ var index = 0;
 var totalPages = [];
 
 var OMDBDataUrl = 'https://www.omdbapi.com/?apikey=767dc988&';
+
+function handleSearchButton(event) {
+    event.preventDefault();
+  
+    var searchInputVal = document.querySelector('#search-input').value;
+    if (!searchInputVal) {
+      console.error('You need a search input value!');
+      return;
+    }
+  
+    var resultsQuery = OMDBDataUrl + 's=' + searchInputVal;
+    fetch(resultsQuery)
+      .then(function (response) {
+          if (!response.ok) {
+              throw response.json();
+          }
+  
+          return response.json();
+      })
+      .then(function (queryResults) {
+          var pages = Math.ceil(queryResults.totalResults/10);
+          var queryString = './search-listing.html?q=' + searchInputVal + '&totalpages=' + pages;
+          location.assign(queryString);
+      })
+}
 
 function pageSelect(direction) {
     var searchParamsArr = document.location.search.split('&');
@@ -63,13 +89,16 @@ function getList(title) {
                 card.setAttribute('class', 'card is-flex is-align-content-center mx-4 my-5 ');
                 var movieTitle = document.createElement('div');
                 movieTitle.setAttribute('class', 'card-content mt-6');
+                var moviePoster = document.createElement('img');
+                moviePoster.setAttribute('class', 'card-image is-inline');
                 if(queryResults.Search[i].Poster !== 'N/A') {
-                    var moviePoster = document.createElement('img');
-                    moviePoster.setAttribute('class', 'card-image is-inline');
                     moviePoster.setAttribute('src', queryResults.Search[i].Poster);
-                    card.appendChild(moviePoster);
+                }
+                else {
+                    moviePoster.setAttribute('src', 'https://bulma.io/images/placeholders/320x480.png');    
                 }
                 movieTitle.textContent = queryResults.Search[i].Title;
+                card.appendChild(moviePoster);
                 card.appendChild(movieTitle);
                 resultContentEl.appendChild(card)
             }
@@ -88,4 +117,6 @@ prev.addEventListener('click', function(event) {
     event.stopPropagation();
     pageSelect(-1);
 });
+
+searchBtnEl.addEventListener('click', handleSearchButton);
 
