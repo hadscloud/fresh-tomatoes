@@ -58,7 +58,6 @@ function handleSearchButton(event) {
         var queryString = './search-listing.html?q=' + searchInputVal + '&totalpages=' + pages;
         location.assign(queryString);
     })
-
 }
 
 function removeActiveClasses() {
@@ -198,6 +197,11 @@ function eventHandler(event) {
 landingPageParams(launchPageNumber);
 panelClick.addEventListener("click", eventHandler);
 searchBtnEl.addEventListener('click', handleSearchButton);
+document.addEventListener('keypress', function(event) {
+    if(event.key === 'Enter') {
+        handleSearchButton(event);
+    }
+})
     
     
     // ? Wikipedia Api 
