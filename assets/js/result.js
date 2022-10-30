@@ -12,17 +12,15 @@ var OMDBDataUrl = 'https://www.omdbapi.com/?apikey=767dc988&';
 var OMDBImageUrl = 'https://img.omdbapi.com/?apikey=767dc988&';
 
 function getParams() {
-    
-    var searchParamsArr = document.location.search.split('q=');
-  
-    // Get the title value
-    var query = searchParamsArr[1];
-    
-    resultInfo(query);
+    var searchParamsArr = document.location.search.split('&')
+    var title = searchParamsArr[0].split('=').pop();
+    var movieId = searchParamsArr[1].split('=').pop();
+
+    resultInfo(movieId);
   }
 
-  function resultInfo(query) {
-    var url = OMDBDataUrl + "t=" + query;
+function resultInfo(query) {
+    var url = OMDBDataUrl + "i=" + query;
     fetch(url)
         .then(function (response) {
             if (!response.ok) {
