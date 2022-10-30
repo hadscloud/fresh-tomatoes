@@ -9,7 +9,7 @@ var totalPages = [];
 
 var OMDBDataUrl = 'https://www.omdbapi.com/?apikey=767dc988&';
 
-function searchResults(title) {
+function searchResults(title, id) {
     var searchTitle = title.split('');
 
     for (var i = 0; i < searchTitle.length; i++) {
@@ -18,7 +18,7 @@ function searchResults(title) {
         }
     }
     var titleQuery = searchTitle.join('')
-    var queryString = './search-results.html?q=' + titleQuery;
+    var queryString = './search-results.html?q=' + titleQuery + '&movieID=' + id;
     location.assign(queryString);
 }
 
@@ -98,8 +98,11 @@ function getList(title) {
             }
             
             for (var i = 0; i < queryResults.Search.length; i++) {
+                var movieId = [];
+                movieId[i] = queryResults.Search[i].imdbID;
                 var card = document.createElement('div');
-                card.setAttribute('class', 'card is-flex is-align-content-center mx-4 my-5 ');
+                card.setAttribute('class', 'card is-flex is-align-content-center mx-4 my-5')
+                card.setAttribute('id', movieId[i]);
                 var movieTitle = document.createElement('div');
                 movieTitle.setAttribute('class', 'card-content mt-6 is-clickable');
                 var moviePoster = document.createElement('img');
@@ -118,13 +121,13 @@ function getList(title) {
             resultContentEl.addEventListener('click', function(event) {
                 console.log(event)
                 if(event.target.classList[0] === 'card') {
-                    searchResults(event.target.children[1].innerText);
+                    searchResults(event.target.children[1].innerText, event.target.id);
                 }
                 else if(event.target.classList[0] === 'card-image') {
-                    searchResults(event.target.nextSibling.innerText);
+                    searchResults(event.target.nextSibling.innerText, event.target.parentNode.id);
                 }
                 else if(event.target.classList[0] === 'card-content') {
-                    searchResults(event.target.innerText);
+                    searchResults(event.target.innerText, event.target.parentNode.id);
                 }
             })
         })
