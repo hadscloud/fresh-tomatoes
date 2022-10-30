@@ -3,5 +3,13 @@
     
 } */
 html {
-    background: linear-gradient(#ffb92a, #FFA987, #F7EBE8, #444140);
+    background: linear-gradient(#444140, #F7EBE8, #FFA987, #ffb92a);
+}
+
+.navbar,
+.navbar-end,
+.navbar-menu {
+  background-color: #ffb92a;
+  color: #fff;
+  font-size: 1.25rem;
 }
