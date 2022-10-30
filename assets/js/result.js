@@ -5,7 +5,7 @@ var OMDBImageUrl = 'https://img.omdbapi.com/?apikey=767dc988&';
 
 function getParams() {
     
-    var searchParamsArr = document.location.search.split('t=');
+    var searchParamsArr = document.location.search.split('q=');
   
     // Get the title value
     var query = searchParamsArr[1];
@@ -26,6 +26,5 @@ function getParams() {
         .then(function (info) {
             //assign info values to the various text and images in search-results.html
 
-        }
-
-  }
+        })
+}
