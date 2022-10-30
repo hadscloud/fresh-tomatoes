@@ -26,7 +26,9 @@ body {
 .navbar,
 .navbar-end,
 .navbar-menu {
-  background-color: #eaeaea;
+  background-color: #ffb92a;
+  color: #fff;
+  font-size: 1.25rem;
 }
 
 .panel {

@@ -167,18 +167,16 @@ function loadSummary(title) {
             return response.json();
         })
         .then(function (data) {
-            var summaryCard = document.createElement('div');
             var summaryCardTitle = document.createElement('div');
             var summaryCardContent = document.createElement('div');
-            summaryCard.setAttribute("class", "card auto");
             summaryCardTitle.setAttribute("class", "card-header-title");
+            summaryCardTitle.setAttribute("style", "color: #fff; font-size: 1.5rem");
             summaryCardContent.setAttribute("class", "card-content");
-            summaryCard.setAttribute("style","background: #ffb92a");
             summaryCardTitle.textContent = title;
             summaryCardContent.textContent = data.Plot;
-            summaryCard.appendChild(summaryCardTitle);
-            summaryCard.appendChild(summaryCardContent);
-            movieSummary.appendChild(summaryCard);
+            movieSummary.setAttribute("style", "background: #000000; color: #fff; font-family: 'Poppins', sans-serif")
+            movieSummary.appendChild(summaryCardTitle);
+            movieSummary.appendChild(summaryCardContent);
         })
 }
 
