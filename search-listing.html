@@ -4,18 +4,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    <link rel="stylesheet" href="./assets/css/styles.css">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+  
+    <link rel="stylesheet" href="./assets/css/styles2.css">
     <title>Fresh Tomatoes</title>
-    <link rel="shortcut icon" type="image/jpg" href="./assets/images/favicon.ico">
 </head>
 
 <body>
-  <!-- Navbar start -->
     <nav class="navbar" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
           <header class="navbar-item">
-            <a href="">
+            <a href="index.html">
             <img src="./assets/images/fresh-tomatoes-logo-nb.png" width="50" height="30"><h1 class="header">Fresh Tomatoes</h1>
             </a>
           </header>
@@ -38,21 +40,19 @@
         </div>
       </div>
     </nav>
-    <!-- Navbar end -->
-    <div id="panels" class="container">
-      <div id="panel-one" class="panel active">
-          
-      </div>
-      <div id="panel-two" class="panel active">
-          
-      </div>
-      <div id="panel-three" class="panel active">
-          
-      </div>
+    <div id="results-container" class="section">
+        <h2>Showing results for <span id="result-text"></span></h2>
+        <div id="result-content" class="container is-flex-direction-column"></div>
     </div>
-    <div id="summary" class="card">
-
-    </div>
-    <script src="./assets/js/landing-page.js"></script>
+    <section id="page-select" class="section is-flex is-justify-content-center">
+      <button class="prev is-clickable mx-2">
+        ◀
+      </button>
+      <div id="page-number" class="mx-1">
+      </div>
+      <button class="next is-clickable mx-2">
+        ▶ 
+      </button>
+    <script src="./assets/js/listing-page.js"></script>
 </body>
 </html>
