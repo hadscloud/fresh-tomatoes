@@ -18,6 +18,10 @@ body {
     font-family: "Poppins", sans-serif;
 }
 
+img {
+    border-radius: 4px;
+}
+
 .header {
     margin-left: 5px;
     display: contents;
@@ -26,7 +30,7 @@ body {
 .navbar,
 .navbar-end,
 .navbar-menu {
-  background-color: #f2af28;
+  background-color: #444140;
   color: #fff;
   font-size: 1.25rem;
 }
