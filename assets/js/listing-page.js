@@ -9,6 +9,19 @@ var totalPages = [];
 
 var OMDBDataUrl = 'https://www.omdbapi.com/?apikey=767dc988&';
 
+function searchResults(title) {
+    var searchTitle = title.split('');
+
+    for (var i = 0; i < searchTitle.length; i++) {
+        if(searchTitle[i] === " ") {
+            searchTitle.splice(i,1,"+");
+        }
+    }
+    var titleQuery = searchTitle.join('')
+    var queryString = './search-results.html?q=' + titleQuery;
+    location.assign(queryString);
+}
+
 function handleSearchButton(event) {
     event.preventDefault();
   
@@ -78,7 +91,7 @@ function getList(title) {
             return response.json();
         })
         .then(function (queryResults) {
-
+            console.log(queryResults)
             if (!queryResults.Search.length) {
                 console.log('No results found!');
                 resultContentEl.innerHTML = '<h3>No results found, search again!</h3>';
@@ -88,7 +101,7 @@ function getList(title) {
                 var card = document.createElement('div');
                 card.setAttribute('class', 'card is-flex is-align-content-center mx-4 my-5 ');
                 var movieTitle = document.createElement('div');
-                movieTitle.setAttribute('class', 'card-content mt-6');
+                movieTitle.setAttribute('class', 'card-content mt-6 is-clickable');
                 var moviePoster = document.createElement('img');
                 moviePoster.setAttribute('class', 'card-image is-inline');
                 if(queryResults.Search[i].Poster !== 'N/A') {
@@ -102,6 +115,18 @@ function getList(title) {
                 card.appendChild(movieTitle);
                 resultContentEl.appendChild(card)
             }
+            resultContentEl.addEventListener('click', function(event) {
+                console.log(event)
+                if(event.target.classList[0] === 'card') {
+                    searchResults(event.target.children[1].innerText);
+                }
+                else if(event.target.classList[0] === 'card-image') {
+                    searchResults(event.target.nextSibling.innerText);
+                }
+                else if(event.target.classList[0] === 'card-content') {
+                    searchResults(event.target.innerText);
+                }
+            })
         })
         .catch(function (error) {
             console.error(error);
