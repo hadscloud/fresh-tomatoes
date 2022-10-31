@@ -45,6 +45,11 @@ img {
     width: 90vw;
 }
 
+#mainposter {
+    align-items: center;
+    justify-content: center;
+}
+
 #results-container {
     color: #fff;
     font-size: 2rem;
