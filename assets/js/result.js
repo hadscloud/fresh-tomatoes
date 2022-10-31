@@ -23,9 +23,9 @@ function resultInfo(query) {
     var url = OMDBDataUrl + "i=" + query;
     fetch(url)
         .then(function (response) {
-            if (!response.ok) {
-                throw response.json();
-            }
+           // if (!response.ok) {
+              //  throw response.json();
+           // }
 
             return response.json();
         })
@@ -37,7 +37,7 @@ function resultInfo(query) {
             synopsisEl.textContent = info.Plot;
 
             var actors = info.Actors.split(",");
-            console.log(actors);
+            
             act1El.textContent = actors[0];
             act2El.textContent = actors[1];
             act3El.textContent = actors[2];
@@ -45,5 +45,18 @@ function resultInfo(query) {
 
 
         })
+       /* var wikiUrl = "https://www.mediawiki.org/w/api.php?action=parse&format=json&page=<" + query;
+
+        fetch(wikiUrl)
+        .then(function (response) {
+            if (!response.ok) {
+                throw response.json();
+            }
+
+            return response.json();
+        })
+        .then(function (wiki) {
+            console.log(wiki);
+        }) */
 }
 getParams();
