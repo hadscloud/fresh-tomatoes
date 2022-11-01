@@ -11,6 +11,7 @@ var wikiLinkText = document.querySelector('#in-depth');
 var actorOneEl = document.querySelector('#actor-one');
 var actorTwoEl = document.querySelector('#actor-two');
 var actorThreeEl = document.querySelector('#actor-three');
+var fullPlotEl = document.querySelector('#full-plot');
 
 var OMDBDataUrl = 'https://www.omdbapi.com/?apikey=767dc988&';
 var OMDBImageUrl = 'https://img.omdbapi.com/?apikey=767dc988&';
@@ -49,6 +50,42 @@ function handleSearchButton(event) {
       })
 }
 
+function getWikiInfoNoYear(title) {
+    var wikiURL = WikiURL;
+    var params = {
+        action: "opensearch",
+        search: title,
+        format: "json"
+    };
+
+    wikiURL = wikiURL + "?origin=*";
+    Object.keys(params).forEach(function(key) {
+        wikiURL += "&" + key + "=" + params[key];
+    })
+    fetch(wikiURL)
+        .then(function (response) {
+            if (!response.ok) {
+                throw response.json();
+            }
+
+            return response.json();
+        })
+        .then(function(queryData) {
+            if(!queryData[3][0]) {
+                wikiLinkText.textContent = "There is no Wiki page for this content! Maybe you should start one?";
+            }
+            else {
+                var titleForPage = title.replace(/_/g,' ');
+                var titleForPage = titleForPage.replace(/%27/g,"'")
+                var wikiLink = document.createElement('a')
+                wikiLink.textContent = titleForPage;
+                wikiLink.setAttribute('href', queryData[3][0]);
+                wikiLink.setAttribute('class', 'is-size-3')
+                wikiLinkText.appendChild(wikiLink);
+            }
+        })
+}
+
 function getWikiInfo(title, year) {
     var wikiURL = WikiURL;
     var params = {
@@ -71,18 +108,296 @@ function getWikiInfo(title, year) {
         })
         .then(function(queryData) {
             if(!queryData[3][0]) {
-                wikiLinkText.textContent = "There is no Wiki page for this content! Maybe you should start one?"
+                getWikiInfoNoYear(title);
             }
             else {
                 var titleForPage = title.replace(/_/g,' ');
+                var titleForPage = titleForPage.replace(/%27/g,"'")
+                //var titleForPage = titleForPage.replace(/%27/g,"'")
                 var wikiLink = document.createElement('a')
                 wikiLink.textContent = titleForPage;
                 wikiLink.setAttribute('href', queryData[3][0]);
                 wikiLink.setAttribute('class', 'is-size-3')
                 wikiLinkText.appendChild(wikiLink);
+                getFullPlot(titleForPage);
             }
-        })
 
+        })
+}
+
+function setActorOneWikiLink(actor) {
+    actor = actor.replace(/ /g, '_');
+    var wikiURL = WikiURL;
+    var params = {
+        action: "opensearch",
+        search: actor,
+        format: "json"
+    };
+
+    wikiURL = wikiURL + "?origin=*";
+    Object.keys(params).forEach(function(key) {
+        wikiURL += "&" + key + "=" + params[key];
+    })
+
+    fetch(wikiURL)
+        .then(function (response) {
+            if (!response.ok) {
+                throw response.json();
+            }
+
+            return response.json();
+        })
+        .then(function (queryData) {
+            act1El.setAttribute('href', queryData[3][0]);
+        })
+}
+
+function setActorTwoWikiLink(actor) {
+    actor = actor.replace(/ /g, '_');
+    var wikiURL = WikiURL;
+    var params = {
+        action: "opensearch",
+        search: actor,
+        format: "json"
+    };
+
+    wikiURL = wikiURL + "?origin=*";
+    Object.keys(params).forEach(function(key) {
+        wikiURL += "&" + key + "=" + params[key];
+    })
+
+    fetch(wikiURL)
+        .then(function (response) {
+            if (!response.ok) {
+                throw response.json();
+            }
+
+            return response.json();
+        })
+        .then(function (queryData) {
+            act2El.setAttribute('href', queryData[3][0]);
+        })
+}
+
+function setActorThreeWikiLink(actor) {
+    actor = actor.replace(/ /g, '_');
+    var wikiURL = WikiURL;
+    var params = {
+        action: "opensearch",
+        search: actor,
+        format: "json"
+    };
+
+    wikiURL = wikiURL + "?origin=*";
+    Object.keys(params).forEach(function(key) {
+        wikiURL += "&" + key + "=" + params[key];
+    })
+
+    fetch(wikiURL)
+        .then(function (response) {
+            if (!response.ok) {
+                throw response.json();
+            }
+
+            return response.json();
+        })
+        .then(function (queryData) {
+            act3El.setAttribute('href', queryData[3][0]);
+        })
+}
+
+function getFullPlot(title) {
+    var searchParamsArr = document.location.search.split('&')
+    var movieId = searchParamsArr[1].split('=').pop();
+    var fullPlotURL = OMDBDataUrl + 'i=' + movieId + '&plot=full';
+
+    fetch(fullPlotURL)
+        .then(function (response) {
+            if (!response.ok) {
+                throw response.json();
+            }
+    
+            return response.json();
+        })
+        .then(function (queryData) {
+            var fullPlot = document.createElement('p');
+            fullPlot.textContent = queryData.Plot;
+            fullPlotEl.appendChild(fullPlot);
+        })
+}
+
+function retryActorOne(actor) {
+    var wikiURL = WikiURL;
+    actor = actor.replace(/ /g, '_')
+    var params = {
+        action: "parse",
+        page: actor + '_(actor)',
+        format: "json"
+    };
+
+    wikiURL = wikiURL + "?origin=*";
+    Object.keys(params).forEach(function(key) {
+        wikiURL += "&" + key + "=" + params[key];
+    })
+    fetch(wikiURL)
+        .then(function (response) {
+            if (!response.ok) {
+                throw response.json();
+            }
+            return response.json();
+        })
+        .then(function (queryData) {
+            for(var i =0; i < queryData.parse.images.length; i++) {
+                if(queryData.parse.images[i].includes('.jpg')) {
+                    var image = queryData.parse.images[i];
+                    break;
+                }
+            }
+            image = 'File:' + image;
+            var imageURL = WikiURL;
+            var imageOne = {
+                action: "query",
+                titles: image,
+                format: "json",
+                prop: 'imageinfo',
+                iiprop: 'url'
+            };
+    
+            imageURL = imageURL + "?origin=*";
+            Object.keys(imageOne).forEach(function(key) {
+                imageURL += "&" + key + "=" + imageOne[key];
+            })
+            fetch(imageURL)
+                .then(function (response) {
+                    if (!response.ok) {
+                        throw response.json();
+                    }
+
+                    return response.json();
+                })
+                .then(function (imageData) {
+                    if(imageData.query.pages[-1].imageinfo) {
+                        actorOneEl.setAttribute('src', imageData.query.pages[-1].imageinfo[0].url)
+                        setActorOneWikiLink(actor + '_(actor)');
+                    }
+                })
+        })
+}
+
+function retryActorTwo(actor) {
+    var wikiURL = WikiURL;
+    actor = actor.replace(/ /g, '_')
+    var params = {
+        action: "parse",
+        page: actor + '_(actor)',
+        format: "json"
+    };
+
+    wikiURL = wikiURL + "?origin=*";
+    Object.keys(params).forEach(function(key) {
+        wikiURL += "&" + key + "=" + params[key];
+    })
+    fetch(wikiURL)
+        .then(function (response) {
+            if (!response.ok) {
+                throw response.json();
+            }
+            return response.json();
+        })
+        .then(function (queryData) {
+            for(var i =0; i < queryData.parse.images.length; i++) {
+                if(queryData.parse.images[i].includes('.jpg')) {
+                    var image = queryData.parse.images[i];
+                    break;
+                }
+            }
+            image = 'File:' + image;
+            var imageURL = WikiURL;
+            var imageTwo = {
+                action: "query",
+                titles: image,
+                format: "json",
+                prop: 'imageinfo',
+                iiprop: 'url'
+            };
+    
+            imageURL = imageURL + "?origin=*";
+            Object.keys(imageTwo).forEach(function(key) {
+                imageURL += "&" + key + "=" + imageTwo[key];
+            })
+            fetch(imageURL)
+                .then(function (response) {
+                    if (!response.ok) {
+                        throw response.json();
+                    }
+
+                    return response.json();
+                })
+                .then(function (imageData) {
+                    if(imageData.query.pages[-1].imageinfo) {
+                        actorTwoEl.setAttribute('src', imageData.query.pages[-1].imageinfo[0].url)
+                        setActorTwoWikiLink(actor + '_(actor)');
+                    }
+                })
+        })
+}
+
+function retryActorThree(actor) {
+    var wikiURL = WikiURL;
+    actor = actor.replace(/ /g, '_')
+    var params = {
+        action: "parse",
+        page: actor + '_(actor)',
+        format: "json"
+    };
+
+    wikiURL = wikiURL + "?origin=*";
+    Object.keys(params).forEach(function(key) {
+        wikiURL += "&" + key + "=" + params[key];
+    })
+    fetch(wikiURL)
+        .then(function (response) {
+            if (!response.ok) {
+                throw response.json();
+            }
+            return response.json();
+        })
+        .then(function (queryData) {
+            for(var i =0; i < queryData.parse.images.length; i++) {
+                if(queryData.parse.images[i].includes('.jpg')) {
+                    var image = queryData.parse.images[i];
+                    break;
+                }
+            }
+            image = 'File:' + image;
+            var imageURL = WikiURL;
+            var imageThree = {
+                action: "query",
+                titles: image,
+                format: "json",
+                prop: 'imageinfo',
+                iiprop: 'url'
+            };
+    
+            imageURL = imageURL + "?origin=*";
+            Object.keys(imageThree).forEach(function(key) {
+                imageURL += "&" + key + "=" + imageThree[key];
+            })
+            fetch(imageURL)
+                .then(function (response) {
+                    if (!response.ok) {
+                        throw response.json();
+                    }
+
+                    return response.json();
+                })
+                .then(function (imageData) {
+                    if(imageData.query.pages[-1].imageinfo) {
+                        actorThreeEl.setAttribute('src', imageData.query.pages[-1].imageinfo[0].url)
+                        setActorThreeWikiLink(actor + '_(actor)');
+                    }
+                })
+        })
 }
 
 function getActorImages(actorOne,actorTwo,actorThree) {
@@ -105,11 +420,19 @@ function getActorImages(actorOne,actorTwo,actorThree) {
             return response.json();
         })
         .then(function (queryData) {
-            for(var i =0; i < queryData.parse.images.length; i++) {
-                if(queryData.parse.images[i].includes('.jpg')) {
-                    var image = queryData.parse.images[i];
-                    break;
+            if(queryData.parse.images.length !== 0) {
+                for(var i =0; i < queryData.parse.images.length; i++) {
+                    if(queryData.parse.images[i].includes('.jpg')) {
+                        var image = queryData.parse.images[i];
+                        break;
+                    }
                 }
+            }
+            else {
+                retryActorOne(actorOne);
+            }
+            if (!image) {
+                setActorOneWikiLink(actorOne);
             }
             image = 'File:' + image;
             var imageURL = WikiURL;
@@ -137,6 +460,7 @@ function getActorImages(actorOne,actorTwo,actorThree) {
                 .then(function (imageData) {
                     if(imageData.query.pages[-1].imageinfo[0].url) {
                         actorOneEl.setAttribute('src', imageData.query.pages[-1].imageinfo[0].url)
+                        setActorOneWikiLink(actorOne);
                     }
                 })
         })
@@ -159,11 +483,19 @@ function getActorImages(actorOne,actorTwo,actorThree) {
                 return response.json();
             })
             .then(function (queryData) {
-                for(var i =0; i < queryData.parse.images.length; i++) {
-                    if(queryData.parse.images[i].includes('.jpg')) {
-                        var image = queryData.parse.images[i];
-                        break;
+                if(queryData.parse.images.length !== 0) {
+                    for(var i =0; i < queryData.parse.images.length; i++) {
+                        if(queryData.parse.images[i].includes('.jpg')) {
+                            var image = queryData.parse.images[i];
+                            break;
+                        }
                     }
+                }
+                else {
+                    retryActorTwo(actorTwo);
+                }
+                if (!image) {
+                    setActorTwoWikiLink(actorTwo);
                 }
                 image = 'File:' + image;
                 var imageURL = WikiURL;
@@ -191,6 +523,7 @@ function getActorImages(actorOne,actorTwo,actorThree) {
                     .then(function (imageData) {
                         if(imageData.query.pages[-1].imageinfo) {
                             actorTwoEl.setAttribute('src', imageData.query.pages[-1].imageinfo[0].url)
+                            setActorTwoWikiLink(actorTwo);
                         }
                     })
             })
@@ -213,12 +546,19 @@ function getActorImages(actorOne,actorTwo,actorThree) {
                 return response.json();
             })
             .then(function (queryData) {
-                console.log(queryData);
-                for(var i =0; i < queryData.parse.images.length; i++) {
-                    if(queryData.parse.images[i].includes('.jpg')) {
-                        var image = queryData.parse.images[i];
-                        break;
+                if(queryData.parse.images.length !== 0) {
+                    for(var i =0; i < queryData.parse.images.length; i++) {
+                        if(queryData.parse.images[i].includes('.jpg')) {
+                            var image = queryData.parse.images[i];
+                            break;
+                        }
                     }
+                }
+                else {
+                    retryActorThree(actorOne);
+                }
+                if (!image) {
+                    setActorThreeWikiLink(actorThree);
                 }
                 image = 'File:' + image;
                 var imageURL = WikiURL;
@@ -246,6 +586,7 @@ function getActorImages(actorOne,actorTwo,actorThree) {
                     .then(function (imageData) {
                         if(imageData.query.pages[-1].imageinfo) {
                             actorThreeEl.setAttribute('src', imageData.query.pages[-1].imageinfo[0].url)
+                            setActorThreeWikiLink(actorThree);
                         }
                     })
             })
@@ -287,7 +628,6 @@ function resultInfo(queryID, queryTitle) {
             getWikiInfo(wikiTitle, info.Year);
         })
 
-     
 }
 
 getParams();
