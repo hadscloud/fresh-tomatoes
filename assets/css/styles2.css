@@ -1,7 +1,3 @@
-/* .title {
-    text-align: left !important;
-    
-} */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap");
 
 * {
@@ -43,25 +39,23 @@ img {
 .container {
     display: flex;
     width: 90vw;
+    align-items: center;
+    justify-content: center;
 }
 
 #mainposter {
     align-items: center;
     justify-content: center;
     box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
-    
 }
 
 #results-container {
     color: #fff;
     font-size: 2rem;
-    
-    
 }
 
 #page-number {
-    color: #fff;
-    
+    color: #fff; 
 }
 
 .glitch {
@@ -132,4 +126,8 @@ img {
     width: 100%;
     max-width: 1175px;
     height: auto;
+    }
+
+    .footer {
+        background-color: #303030;
     }
