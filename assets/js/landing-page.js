@@ -15,7 +15,7 @@ var OMDBDataUrl = 'https://www.omdbapi.com/?apikey=767dc988&';
 var OMDBImageUrl = 'https://img.omdbapi.com/?apikey=767dc988&';
 
 //Global arrays
-var launchPageNumber = [0,1,2,3,4,5]
+var launchPageNumber = [0,1,2,3,4,5,6,7]
 var launchPageTitles = [
     "V+for+Vendetta",
     "Kiki's+Delivery+Service",
@@ -23,6 +23,8 @@ var launchPageTitles = [
     "Spider-Man:+No+Way+Home",
     "Die+Hard",
     "The+Avengers",
+    "Frozen",
+    "Tarzan",
 ];
 
 //Landing page posters
@@ -33,6 +35,8 @@ var launchPagePosters = {
     KikisDeliveryService: 'https://cdn.suwalls.com/wallpapers/anime/kikis-delivery-service-30125-2560x1600.jpg',
     DieHard: 'https://wallpapercave.com/wp/wp1933244.jpg',
     SpiritedAway: 'https://d1e4pidl3fu268.cloudfront.net/875e245f-ebfa-4815-8c76-8f3e8f265bc2/826663181579_animespiritedawaydvdprimary.crop_1063x797_0,344.preview.jpg',
+    Frozen: 'https://lumiere-a.akamaihd.net/v1/images/p_frozen_18373_3131259c.jpeg',
+    Tarzan: 'https://lumiere-a.akamaihd.net/v1/images/p_tarzan_19875_de73a443.jpeg',
 }
 
 function searchResults(title, id) {
@@ -87,7 +91,7 @@ panels.forEach(panel => {
 })
 
 function landingPageParams(numArray) {
-    var i = 6;
+    var i = numArray.length;
     var j;
     var selection = [];
     var urls = [];
