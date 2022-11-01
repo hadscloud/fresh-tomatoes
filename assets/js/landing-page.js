@@ -35,8 +35,8 @@ var launchPagePosters = {
     KikisDeliveryService: 'https://cdn.suwalls.com/wallpapers/anime/kikis-delivery-service-30125-2560x1600.jpg',
     DieHard: 'https://wallpapercave.com/wp/wp1933244.jpg',
     SpiritedAway: 'https://d1e4pidl3fu268.cloudfront.net/875e245f-ebfa-4815-8c76-8f3e8f265bc2/826663181579_animespiritedawaydvdprimary.crop_1063x797_0,344.preview.jpg',
-    Frozen: 'https://lumiere-a.akamaihd.net/v1/images/p_frozen_18373_3131259c.jpeg',
-    Tarzan: 'https://lumiere-a.akamaihd.net/v1/images/p_tarzan_19875_de73a443.jpeg',
+    Frozen: 'https://images6.alphacoders.com/491/491326.jpg',
+    Tarzan: 'https://c4.wallpaperflare.com/wallpaper/58/531/792/tarzan-wallpaper-preview.jpg',
 }
 
 function searchResults(title, id) {
