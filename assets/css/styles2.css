@@ -133,3 +133,7 @@ img {
     max-width: 1175px;
     height: auto;
     }
+
+    .footer {
+        background-color: #303030;
+    }
