@@ -82,6 +82,7 @@ function getWikiInfoNoYear(title) {
                 wikiLink.setAttribute('href', queryData[3][0]);
                 wikiLink.setAttribute('class', 'is-size-3')
                 wikiLinkText.appendChild(wikiLink);
+                getFullPlot(titleForPage);
             }
         })
 }
