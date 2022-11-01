@@ -67,12 +67,14 @@ function initialLoad() {
     var searchParamsArr = document.location.search.split('&');
     var title = searchParamsArr[0].split('=').pop();
     var pageCount = parseInt(searchParamsArr[1].split('=').pop(),10);
+    var titleForPage = title.replace(/%20/g,' ');
 
+    console.log(titleForPage);
     for (var i = 0; i < pageCount; i++) {
         totalPages[i] = i + 1;
     }
 
-    resultTextEl.textContent = title;
+    resultTextEl.textContent = titleForPage;
     pageNumber.textContent = totalPages[0];
     getList(title);
 }
