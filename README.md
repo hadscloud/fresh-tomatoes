@@ -46,6 +46,8 @@ Using chrome as the browser for the web page, right click on it and click inspec
 
 This is an image of the deployed website:
 ![Fresh Tomatoes website.](./assets/images/Fresh-Tomatoes-SrcnShot1.png)
+![Fresh Tomatoes website.](./assets/images/Fresh-Tomatoes-SrcnShot2.png)
+![Fresh Tomatoes website.](./assets/images/Fresh-Tomatoes-SrcnShot3.png)
 
 ![alt expected website](https://github.com/hadscloud/fresh-tomatoes/blob/main/assets/images/fresh-tomatoes-logo-nb.png)
 
