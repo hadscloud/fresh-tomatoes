@@ -1,6 +1,10 @@
 # Fresh Tomatoes
 A webpage for searching movie information
 
+<p align="center">
+  <img src="assets/images/github-icon.png" width="100" >
+</p>
+
 ## Project Descriptions
 1. We created a hompage where all the popular movies are fetched from API and dispalyed.
 2. The home page has options to search movies based on keywords,genres and a combination of both.
