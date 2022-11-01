@@ -49,7 +49,7 @@ function resultInfo(queryID, queryTitle) {
             synopsisEl.textContent = info.Plot;
 
             var actors = info.Actors.split(",");
-            console.log(actors);
+            
             act1El.textContent = actors[0];
             act2El.textContent = actors[1];
             act3El.textContent = actors[2];
@@ -67,6 +67,8 @@ function resultInfo(queryID, queryTitle) {
 
             return response.json();
         })
-    
+        .then(function (wiki) {
+            console.log(wiki);
+        }) 
 }
 getParams();

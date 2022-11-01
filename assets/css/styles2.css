@@ -48,13 +48,19 @@ img {
 #mainposter {
     align-items: center;
     justify-content: center;
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+    
 }
 
 #results-container {
     color: #fff;
     font-size: 2rem;
+    
+    
 }
 
 #page-number {
     color: #fff;
+    
 }
+

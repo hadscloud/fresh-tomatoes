@@ -11,6 +11,14 @@ body {
   font-family: "Poppins", sans-serif;
   height: 100vh;
   background: linear-gradient(#000000 50%, #ffb92a 50%);
+  animation-name: example;
+  animation-duration: 2.5s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes example {
+  from {background: linear-gradient(#000000 50%, #ffb92a 50%);}
+  to {background: linear-gradient(#ffb92a 50%, #000000 50%);}
 }
 
 .header {
@@ -64,6 +72,75 @@ body {
   transition: opacity 0.3s ease-in 0.4s;
 }
 
-.card-content {
+/* .card-content {
  padding-top: 5px;
-} 
+}  */
+
+.glitch{
+  font-size: 25px;
+  color: #ffffff;
+  animation: glitch 398ms infinite;
+  font-weight: 700;
+  text-transform: uppercase;
+  position: relative;
+  font-family: 'Open Sans', sans-serif;
+  letter-spacing: 0.2rem;
+  text-shadow: 0.05em 0 0 rgba(255, 0, 0, .75), -0.025em -.05em 0 rgba(0, 255, 0, .75), 0.025em .05em 0 rgba(0, 0, 255, .75);
+  }
+  .glitch2Bedore{
+  font-size: 6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-family: 'Open Sans', sans-serif;
+  letter-spacing: 0.5rem;
+  color: white;
+  } @keyframes glitch{
+  0%{
+  text-shadow:
+  0.05em 0 0 rgba(255, 0, 0, .75),
+  -0.025em -.05em 0 rgba(0, 255, 0, .75),
+  0.025em .05em 0 rgba(0, 0, 255, .75);
+  }
+  14%{
+  text-shadow:
+  0.05em 0 0 rgba(255, 0, 0, .75),
+  -0.025em -.05em 0 rgba(0, 255, 0, .75),
+  0.025em .05em 0 rgba(0, 0, 255, .75);
+  }
+  15%{
+  text-shadow:
+  -0.05em -.025em 0 rgba(255, 0, 0, .75),
+  0.025em 0.025em 0 rgba(0, 255, 0, .75),
+  -0.05em -.05em 0 rgba(0, 0, 255, .75);
+  }
+  49%{
+  text-shadow:
+  -0.05em -.025em 0 rgba(255, 0, 0, .75),
+  0.025em 0.025em 0 rgba(0, 255, 0, .75),
+  -0.05em -.05em 0 rgba(0, 0, 255, .75);
+  }
+  50%{
+  text-shadow:
+  0.025em 0.05em 0 rgba(255, 0, 0, .75),
+  0.05em 0 0 rgba(0, 255, 0, .75),
+  0 -0.05em 0 rgba(0, 0, 255, .75);
+  }
+  99%{
+  text-shadow:
+  0.025em 0.05em 0 rgba(255, 0, 0, .75),
+  0.05em 0 0 rgba(0, 255, 0, .75),
+  0 -0.05em 0 rgba(0, 0, 255, .75);
+  }
+  100%{
+  text-shadow:
+  -0.025em 0 0 rgba(255, 0, 0, .75),
+  -0.025em -0.025em 0 rgba(0, 255, 0, .75),
+  -0.025em -0.05em 0 rgba(0, 0, 255, .75);
+  }
+  }
+  .containerGlitch{
+  margin-top: 0px;
+  width: 100%;
+  max-width: 1175px;
+  height: auto;
+  }
