@@ -12,7 +12,7 @@ A webpage for searching movie information
 4. When users click on movie details, an overview of the movie is displayed
 ### Possible Future Features
 5. If a user does not have an account,he/she can signup and create a new account.
-6. In the sign up page, users will have to fill all input field, password and confirm-password should be same. Passwords are saved as a hash, not as text in the database. When user logs in,the password/user inputs will be matched with the hashed password.
+6. In the sign up page, users will have to fill all input fields. Password and confirm-password should be same. Passwords are saved as a hash, not as text in the database. When user logs in,the password/user inputs will be matched with the hashed password.
 7. Create 2 tables in the database. One for storing the users details and second for storing the movie ratings.
 8. A rating table that saves the ratings along with the logged in User’s user Id and movieId(Fetched from the API)
 
