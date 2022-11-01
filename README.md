@@ -2,7 +2,7 @@
 A webpage for searching movie information
 
 <p align="center">
-  <img src="assets/images/github-icon.png" width="100" >
+  <img src="assets/images/video-camera.png" width="100" >
 </p>
 
 ## Project Descriptions
