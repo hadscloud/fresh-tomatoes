@@ -35,6 +35,19 @@ var launchPagePosters = {
     SpiritedAway: 'https://d1e4pidl3fu268.cloudfront.net/875e245f-ebfa-4815-8c76-8f3e8f265bc2/826663181579_animespiritedawaydvdprimary.crop_1063x797_0,344.preview.jpg',
 }
 
+function searchResults(title, id) {
+    var searchTitle = title.split('');
+
+    for (var i = 0; i < searchTitle.length; i++) {
+        if(searchTitle[i] === " ") {
+            searchTitle.splice(i,1,"+");
+        }
+    }
+    var titleQuery = searchTitle.join('')
+    var queryString = './search-results.html?q=' + titleQuery + '&movieID=' + id;
+    location.assign(queryString);
+}
+
 function handleSearchButton(event) {
   event.preventDefault();
 
@@ -183,6 +196,12 @@ function loadSummary(title) {
             movieSummary.setAttribute("style", "background: #000000; color: #fff; font-family: 'Poppins', sans-serif")
             movieSummary.appendChild(summaryCardTitle);
             movieSummary.appendChild(summaryCardContent);
+            var activePanel = document.querySelector('.active');
+            activePanel.addEventListener('click', function(event) {
+                if(event.target.classList[1] === 'active') {
+                    searchResults(data.Title, data.imdbID);
+                }
+            })
         })
 }
 
