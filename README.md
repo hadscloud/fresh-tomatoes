@@ -5,6 +5,14 @@ A webpage for searching movie information
   <img src="assets/images/video-camera.png" width="100" >
 </p>
 
+## Badges 
+![Github Repo Size](https://img.shields.io/github/repo-size/hadscloud/fresh-tomatoes?style=for-the-badge)
+![Bitbucket open issues](https://img.shields.io/bitbucket/issues/hadscloud/fresh-tomatoes?style=for-the-badge)
+![GitHub Repo stars](https://img.shields.io/github/stars/hadscloud/fresh-tomatoes?style=social)
+
+
+
+
 ## Project Descriptions
 1. We created a homepage where all the popular movies are fetched from API and displayed.
 2. The homepage has options to search movies based on keywords in the movie title.
