@@ -9,6 +9,7 @@ var titleThree = document.createElement('h3');
 var panelClick = document.getElementById('panels');
 var movieSummary = document.getElementById('summary');
 var searchBtnEl = document.querySelector('#search-btn');
+var recentEl = document.querySelector('#search-input');
 
 // API Keys
 var OMDBDataUrl = 'https://www.omdbapi.com/?apikey=767dc988&';
@@ -235,6 +236,7 @@ function eventHandler(event) {
     
 landingPageParams(launchPageNumber);
 panelClick.addEventListener("click", eventHandler);
+recentEl.addEventListener('click', recentSearch);
 searchBtnEl.addEventListener('click', handleSearchButton);
 document.addEventListener('keypress', function(event) {
     if(event.key === 'Enter') {
