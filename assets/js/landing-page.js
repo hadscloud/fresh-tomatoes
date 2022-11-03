@@ -72,7 +72,7 @@ function handleSearchButton(event) {
 
   var recent = [];
   recent = JSON.parse(localStorage.getItem("recent"));
-  if (!recent.includes(searchInputVal)) {
+  if (recent === NULL || !recent.includes(searchInputVal)) {
     recent.push(searchInputVal);
     localStorage.setItem("recent", JSON.stringify(recent));
   }
