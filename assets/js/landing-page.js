@@ -52,6 +52,15 @@ function searchResults(title, id) {
     location.assign(queryString);
 }
 
+function recentSearch(event) {
+    var recent = [];
+    recent = JSON.parse(localStorage.getItem("recent"));
+    if (recent !== null) {
+        // code for deploying recent array in the html file
+        // code or function call for user clicking one of the recent searches and setting document.querySelector('#search-input').value equal to that choice
+      }
+}
+
 function handleSearchButton(event) {
   event.preventDefault();
 
@@ -59,6 +68,13 @@ function handleSearchButton(event) {
   if (!searchInputVal) {
     console.error('You need a search input value!');
     return;
+  }
+
+  var recent = [];
+  recent = JSON.parse(localStorage.getItem("recent"));
+  if (!recent.includes(searchInputVal)) {
+    recent.push(searchInputVal);
+    localStorage.setItem("recent", JSON.stringify(recent));
   }
 
   var resultsQuery = OMDBDataUrl + 's=' + searchInputVal;
