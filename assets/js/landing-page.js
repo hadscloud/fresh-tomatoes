@@ -9,7 +9,7 @@ var titleThree = document.createElement('h3');
 var panelClick = document.getElementById('panels');
 var movieSummary = document.getElementById('summary');
 var searchBtnEl = document.querySelector('#search-btn');
-var recentEl = document.querySelector('#search-input');
+// var recentEl = document.querySelector('#search-input');
 
 // API Keys
 var OMDBDataUrl = 'https://www.omdbapi.com/?apikey=767dc988&';
@@ -53,14 +53,14 @@ function searchResults(title, id) {
     location.assign(queryString);
 }
 
-function recentSearch(event) {
+/*function recentSearch(event) {
     var recent = [];
     recent = JSON.parse(localStorage.getItem("recent"));
     if (recent !== null) {
         // code for deploying recent array in the html file
         // code or function call for user clicking one of the recent searches and setting document.querySelector('#search-input').value equal to that choice
       }
-}
+} */
 
 function handleSearchButton(event) {
   event.preventDefault();
@@ -71,12 +71,13 @@ function handleSearchButton(event) {
     return;
   }
 
-  var recent = [];
+ /* var recent = [];
   recent = JSON.parse(localStorage.getItem("recent"));
   if (recent === NULL || !recent.includes(searchInputVal)) {
     recent.push(searchInputVal);
+    console.log(recent);
     localStorage.setItem("recent", JSON.stringify(recent));
-  }
+  } */
 
   var resultsQuery = OMDBDataUrl + 's=' + searchInputVal;
   fetch(resultsQuery)
@@ -236,7 +237,7 @@ function eventHandler(event) {
     
 landingPageParams(launchPageNumber);
 panelClick.addEventListener("click", eventHandler);
-recentEl.addEventListener('click', recentSearch);
+// recentEl.addEventListener('click', recentSearch);
 searchBtnEl.addEventListener('click', handleSearchButton);
 document.addEventListener('keypress', function(event) {
     if(event.key === 'Enter') {
