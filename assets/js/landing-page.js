@@ -225,31 +225,4 @@ document.addEventListener('keypress', function(event) {
         handleSearchButton(event);
     }
 })
-    
-    
-    // ? Wikipedia Api 
-// ! Needs to be checked 👇 
 
-
-// if (search) {
-//     var api = "https://en.wikipedia.org/w/api.php?action=help&modules=opensearch"; 
-//     console.log(api)
-
-// if (search) {
-//     var api = "https://en.wikipedia.org/w/api.php?action=help&modules=opensearch"; 
-//     console.log(api)
-// if (search) {
-//     var api = " URL here  "; 
-
-//     fetch(api)
-//     .then(response => response.json())
-//     .then(response => {
-//         response = response.query.pages;
-//         var pageid = Object.keys(response)[0];
-//         var extract = response[pageid].extract;
-
-//         title_elem.innerHTML = search;
-//         description_elem.innerHTML = extract;
-        
-//     })
-// }
