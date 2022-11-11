@@ -144,3 +144,13 @@ body {
   max-width: 1175px;
   height: auto;
   }
+
+#favorites {
+  font-weight: bolder;
+}
+
+#page-select {
+  background: #000000; 
+  color: #fff; 
+  font-family: 'Poppins', sans-serif
+}

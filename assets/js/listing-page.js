@@ -69,7 +69,6 @@ function initialLoad() {
     var pageCount = parseInt(searchParamsArr[1].split('=').pop(),10);
     var titleForPage = title.replace(/%20/g,' ');
 
-    console.log(titleForPage);
     for (var i = 0; i < pageCount; i++) {
         totalPages[i] = i + 1;
     }

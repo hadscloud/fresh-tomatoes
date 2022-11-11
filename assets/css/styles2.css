@@ -68,16 +68,16 @@ img {
     font-family: 'Open Sans', sans-serif;
     letter-spacing: 0.2rem;
     text-shadow: 0.05em 0 0 rgba(255, 0, 0, .75), -0.025em -.05em 0 rgba(0, 255, 0, .75), 0.025em .05em 0 rgba(0, 0, 255, .75);
-    }
+}
     
-    .glitch2Bedore {
+.glitch2Bedore {
     font-size: 6rem;
     font-weight: 700;
     text-transform: uppercase;
     font-family: 'Open Sans', sans-serif;
     letter-spacing: 0.5rem;
     color: white;
-    } @keyframes glitch{
+} @keyframes glitch{
     0%{
     text-shadow:
     0.05em 0 0 rgba(255, 0, 0, .75),
@@ -120,14 +120,17 @@ img {
     -0.025em -0.025em 0 rgba(0, 255, 0, .75),
     -0.025em -0.05em 0 rgba(0, 0, 255, .75);
     }
-    }
-    .containerGlitch{
+}
+    
+.containerGlitch{
     margin-top: 0px;
     width: 100%;
     max-width: 1175px;
     height: auto;
-    }
+}
 
-    .footer {
-        background-color: #303030;
-    }
+.footer {
+    background-color: #303030;
+}
+
+

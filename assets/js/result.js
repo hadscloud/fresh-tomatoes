@@ -12,6 +12,7 @@ var actorOneEl = document.querySelector('#actor-one');
 var actorTwoEl = document.querySelector('#actor-two');
 var actorThreeEl = document.querySelector('#actor-three');
 var fullPlotEl = document.querySelector('#full-plot');
+var addFavorite = document.querySelector('#favorite-this');
 
 var OMDBDataUrl = 'https://www.omdbapi.com/?apikey=767dc988&';
 var OMDBImageUrl = 'https://img.omdbapi.com/?apikey=767dc988&';
@@ -23,6 +24,17 @@ function getParams() {
     var movieId = searchParamsArr[1].split('=').pop();
 
     resultInfo(movieId, title);
+}
+
+function favoriteStorage(event) {
+    event.stopPropagation();
+    var favorite = {
+        title: titleEl.textContent,
+        search: document.location.search,
+        poster: posterEl.src
+    }
+    console.log(favorite)
+    localStorage.setItem(`${favorite.title}`, JSON.stringify(favorite));
 }
 
 function handleSearchButton(event) {
@@ -638,4 +650,6 @@ document.addEventListener('keypress', function(event) {
         handleSearchButton(event);
     }
 })
+
+addFavorite.addEventListener('click', favoriteStorage)
 

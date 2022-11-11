@@ -9,7 +9,7 @@ var titleThree = document.createElement('h3');
 var panelClick = document.getElementById('panels');
 var movieSummary = document.getElementById('summary');
 var searchBtnEl = document.querySelector('#search-btn');
-
+var savedFavorites = document.querySelector("#favorites");
 // API Keys
 var OMDBDataUrl = 'https://www.omdbapi.com/?apikey=767dc988&';
 var OMDBImageUrl = 'https://img.omdbapi.com/?apikey=767dc988&';
@@ -37,6 +37,12 @@ var launchPagePosters = {
     SpiritedAway: 'https://d1e4pidl3fu268.cloudfront.net/875e245f-ebfa-4815-8c76-8f3e8f265bc2/826663181579_animespiritedawaydvdprimary.crop_1063x797_0,344.preview.jpg',
     Frozen: 'https://images6.alphacoders.com/491/491326.jpg',
     Tarzan: 'https://c4.wallpaperflare.com/wallpaper/58/531/792/tarzan-wallpaper-preview.jpg',
+}
+
+function favoritesPage(event) {
+    event.preventDefault();
+
+    location.assign('./favorites.html')
 }
 
 function searchResults(title, id) {
@@ -205,7 +211,7 @@ function loadSummary(title) {
                 if(event.target.classList[1] === 'active') {
                     searchResults(data.Title, data.imdbID);
                 }
-            })
+            });
         })
 }
 
@@ -220,6 +226,7 @@ function eventHandler(event) {
 landingPageParams(launchPageNumber);
 panelClick.addEventListener("click", eventHandler);
 searchBtnEl.addEventListener('click', handleSearchButton);
+savedFavorites.addEventListener('click', favoritesPage);
 document.addEventListener('keypress', function(event) {
     if(event.key === 'Enter') {
         handleSearchButton(event);
