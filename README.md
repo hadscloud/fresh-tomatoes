@@ -48,7 +48,7 @@ N/A
 
 ## Usage
 
-Visit this web address to see the github deployed page for the repo https://hadscloud.github.io/fresh-tomatoes/
+Visit this web address to see the github deployed page for the https://iqbalahmadi.github.io/fresh-tomatoes/
 
 Using chrome as the browser for the web page, right click on it and click inspect to use Chrome DevTools to inspect the html and CSS.
 
