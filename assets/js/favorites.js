@@ -4,6 +4,7 @@ var panelClick = document.getElementById('panels');
 var movieSummary = document.getElementById('summary');
 var next = document.querySelector(".next");
 var prev = document.querySelector(".prev");
+var searchBtnEl = document.querySelector('#search-btn');
 // API Keys
 var OMDBDataUrl = 'https://www.omdbapi.com/?apikey=767dc988&';
 var OMDBImageUrl = 'https://img.omdbapi.com/?apikey=767dc988&';
@@ -36,6 +37,31 @@ function searchResults(title, id) {
     var titleQuery = searchTitle.join('')
     var queryString = './search-results.html?q=' + titleQuery + '&movieID=' + id;
     location.assign(queryString);
+}
+
+function handleSearchButton(event) {
+    event.preventDefault();
+  
+    var searchInputVal = document.querySelector('#search-input').value;
+    if (!searchInputVal) {
+      console.error('You need a search input value!');
+      return;
+    }
+  
+    var resultsQuery = OMDBDataUrl + 's=' + searchInputVal;
+    fetch(resultsQuery)
+      .then(function (response) {
+          if (!response.ok) {
+              throw response.json();
+          }
+  
+          return response.json();
+      })
+      .then(function (queryResults) {
+          var pages = Math.ceil(queryResults.totalResults/10);
+          var queryString = './search-listing.html?q=' + searchInputVal + '&totalpages=' + pages;
+          location.assign(queryString);
+      })
 }
 
 function loadSummary(title) {
@@ -148,4 +174,10 @@ prev.addEventListener('click', function(event) {
 });
 
 panelClick.addEventListener("click", eventHandler)
+searchBtnEl.addEventListener('click', handleSearchButton);
+document.addEventListener('keypress', function(event) {
+    if(event.key === 'Enter') {
+        handleSearchButton(event);
+    }
+})
 getFavorites(index);
